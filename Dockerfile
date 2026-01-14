@@ -12,7 +12,7 @@ ARG IN_DOCKER=TRUE
 # is optimized for image size. Use `test` if this image will be used for
 # testing; in this case, the source code and build-only dependencies will not be
 # removed from the image.
-ARG IMAGE_TYPE=build
+ARG IMAGE_TYPE=test
 # Whether to do a unity build.
 ARG CMAKE_UNITY_BUILD=ON
 # Whether to enable translation validation
@@ -51,5 +51,9 @@ ENV PATH="/root/.local/bin:$PATH"
 # Delegate the build to tools/ci-build.
 COPY . /p4c/
 RUN /p4c/tools/ci-build.sh
+
+RUN pip uninstall -yq ptf && \
+    pip install -q git+https://github.com/p4lang/ptf ply
+
 # Set the workdir after building p4c.
-WORKDIR /p4c/
+WORKDIR /p4c/build
