@@ -382,7 +382,7 @@ def create_options(test_args: Any) -> Optional[Options]:
             options.testName = options.testName[1:]
         if options.testName.endswith(".p4"):
             options.testName = options.testName[:-3]
-        options.testName = "bmv2/" + options.testName
+        # options.testName = "bmv2/" + options.testName
     if not options.observation_log:
         if options.testName:
             options.observation_log = Path(options.testName).with_suffix(".p4.obs")

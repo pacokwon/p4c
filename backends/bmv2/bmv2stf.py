@@ -759,7 +759,7 @@ class RunBMV2(object):
                     str(rand),
                 ]
                 + self.interfaceArgs()
-                + [self.jsonfile]
+                + [Path("../../") / self.jsonfile]
             )
             runswitch += self.options.switch_options
             if self.options.switch_target_options:
